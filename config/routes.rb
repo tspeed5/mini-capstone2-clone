@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   namespace :client do
     get '/products' => 'products#index'
-    get 'products/:id' => 'products#show'
+    post '/products' => 'products#create'
+    get '/products/new' => 'products#new'
+    get '/products/:id' => 'products#show'
+    get '/products/:id' => 'prodcts#edit'
   end
 end
