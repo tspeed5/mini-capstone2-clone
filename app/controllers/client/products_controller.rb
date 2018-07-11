@@ -1,6 +1,11 @@
 class Client::ProductsController < ApplicationController
   def index
-    response = Unirest.get("localhost:3000/api/products")
+    search = params[:client_search]
+    response = Unirest.get("localhost:3000/api/products",
+      parameters: {
+        search: search
+      }
+      )
     @products = response.body
     render "index.html.erb"
   end
@@ -27,7 +32,9 @@ class Client::ProductsController < ApplicationController
 
     @product = response.body
     p @product
+    # flash [:success] = "You made a new recipe"
     render "show.html.erb"
+    # redirect_to "client/products/#{@product['id']}"
   end
 
   def edit

@@ -1,11 +1,20 @@
-<p> test </p>
+
+<a href="/client/products/new">Add a new Product</a>
+
+<%= form_tag "/client/products", method: :get do %>
+    <input type="text" name="client_search">
+    <input type="submit" value="Search For Product">
+<% end %>
 
 <% @products.each do |product| %>
     <p>id: <%= product['id'] %></p>
     <p>name: <%= product['name'] %></p> 
     <p>price: <%= product['price'] %></p>
     <p>image_url: <%= product['image_url'] %></p>
-    <p>description: <%= product['description'] %></p>    
+    <p>description: <%= product['description'] %></p>
+    <p>discount: <%= product['discounted'] %></p> 
+    <p>tax: <%= product['tax'] %></p> 
+    <p>total with Tax: <%= product['total_with_tax'] %></p> 
 
-    <hr>
-    <% end %>
+
+<% end %>
