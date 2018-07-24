@@ -1,18 +1,13 @@
-<%= form_tag "/client/products", method: :patch do %>
-<div>
-    Name: <input type= "text" name="input_name">
-</div>
-<div>
-    Price: <input type= "text" name="input_price">
-</div>
-<div>
-    Image URL: <input type= "text" name="input_image_url">
-</div>
-<div>
-    Description: <input type= "text" name="input_description">
-</div>
-<div>
-    <input type= "submit" value="EDIT PRODUCT">
-</div>
 
+<%= form_tag "/client/products/#{@product["id"]}", method: :patch do %>
+  <div>
+    Name: <input type="text" name="name" value="<%= @product["name"] %>" />
+  </div>
+  <div>
+    Price: <input type="text" name="price" value="<%= @product["price"] %>" />
+  </div>
+  <div>
+    Description: <input type="text" name="description" value="<%= @product["description"] %>" />
+  </div>
+  <input type="submit" name="" value="EDIT PRODUCT"/>
 <% end %>

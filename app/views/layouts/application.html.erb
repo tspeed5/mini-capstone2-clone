@@ -1,7 +1,9 @@
+
+<!-- views/layouts/application.html.erb -->
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MiniCapstone2Client</title>
+    <title>MiniCapstone</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,7 +11,19 @@
   </head>
 
   <body>
+    <a href="/client/products">Home</a>
+    <a href="/client/products/new">New Product</a>
+    <a href="/client/signup">Sign Up</a>
+    <a href="/client/login">Log In</a>
+    <a href="/client/logout" data-method="delete">Log Out</a>
+    <a href="/client/products?category=book">Books</a>
+    <a href="/client/products?category=office supplies">Office Supplies</a>
+    <a href="/client/products?category=apparel">Apparel</a>
+    <%= @jwt %>
+       <% flash.each do |name, message| %>
+      <p><%= message %></p>
+    <% end %>
+
     <%= yield %>
-   <% #flash.each do |name, message| %>
   </body>
 </html>

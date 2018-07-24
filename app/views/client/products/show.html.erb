@@ -1,5 +1,25 @@
-<p> ID: <%= @product['id']%> </p>
-<p> NAME: <%= @product['name']%> </p>
-<p> PRICE: <%= @product['price']%> </p>
-<p> IMAGE_URL: <%= @product['image_url']%> </p>
-<p> DESCRIPTION: <%= @product['description']%> </p>
+<h2><%= @product["name"] %></h2>
+
+<% if @product["formatted"]["discounted"] %>
+    <h4 style="color: red;">Price: <%= @product["price"] %></h4>
+    <h1>Discount Item</h1>
+  <% else %>
+    <h4>Price: <%= @product["price"] %></h4>
+    <h1>Everyday Value!</h1>
+  <% end %>
+<h4>Tax: <%= @product["formatted"]["tax"] %></h4>
+<h4>Total: <%= @product["formatted"]["total"] %></h4>
+<h4>Description: <%= @product["description"] %></h4>
+<% @product["images"].each do |image| %>
+  <img src="<%= image['url'] %>" alt="">
+<% end %>
+
+<a href="/client/products/<%= @product['id'] %>/edit">Edit</a>
+<a href="/client/products/<%= @product['id'] %>" data-method="delete">Delete</a>
+
+
+<%= form_tag "/client/orders", method: :post do %>
+  <p><input type="hidden" name="product_id" value="<%= @product['id'] %>"></p>
+  <p>quantity:<input type="text" name="quantity"></p>
+  <input type="submit" value="Place your order here">
+<% end %>
